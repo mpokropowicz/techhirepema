@@ -121,7 +121,7 @@
     <form action="update_form" method="post">
     <% results.each_with_index do |hash, index| %>
     <% val =  hash.map{|k,v| "#{k}=#{v}"}.join('&') %>
-    <% val = val.sub(' ', "%20") %>
+    <% val = val.delete('') %>
     <button name="vars" value=<%=val%>><%= results[index].values_at("name").join(' ') %>, <%= results[index].values_at("street_address").join(" ") %>, <%= results[index].values_at("municipality_name").join("") %></button><br>
     <%end%>
     </form>
