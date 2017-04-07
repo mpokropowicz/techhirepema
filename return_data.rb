@@ -6,23 +6,52 @@ load "./local_env.rb" if File.exists?("./local_env.rb")
 def open_db()
   begin
     #connect to the database
-   # db_params = {  # local test
-   #      dbname:ENV['dbname'],
-   #      user:ENV['dbuser'],
-   #      password:ENV['dbpassword']
-   #    }
-   db_params = {  # AWS db
-        host: ENV['host'],
-        port:ENV['port'],
+   db_params = {  # local test
         dbname:ENV['dbname'],
         user:ENV['dbuser'],
         password:ENV['dbpassword']
       }
+   # db_params = {  # AWS db
+   #      host: ENV['host'],
+   #      port:ENV['port'],
+   #      dbname:ENV['dbname'],
+   #      user:ENV['dbuser'],
+   #      password:ENV['dbpassword']
+   #    }
     conn = PG::Connection.new(db_params)
   rescue PG::Error => e
     puts 'Exception occurred'
     puts e.message
   end
+end
+
+def write_image(user_hash)
+  begin
+    conn = open_db() # open database for updating
+    max_id = conn.exec("select max(id) from common")[0]  # determine current max index (id) in details table
+    max_id["max"] == nil ? v_id = 1 : v_id = max_id["max"].to_i  # set index variable based on current max index value
+    image_path = "./public/images/uploads/#{v_id}"
+    unless File.directory?(image_path)  # create directory for image
+      FileUtils.mkdir_p(image_path)
+    end
+    image = File.binread(user_hash["image"][:tempfile])  # open image file
+    f = File.new "#{image_path}/#{user_hash["image"][:filename]}", "wb"
+    f.write(image)
+    f.close if f
+    return "#{image_path}/#{user_hash["image"][:filename]}"
+  rescue PG::Error => e
+    puts 'Exception occurred'
+    puts e.message
+  ensure
+    conn.close if conn
+  end
+end
+
+def pull_image(value)
+  user_hash = pull_records(value)
+  id = user_hash[0]["id"]
+  image_name = user_hash[0]["image"]
+  image = "images/uploads/#{id}/#{image_name}"
 end
 
 def update_values(columns)

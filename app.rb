@@ -3,36 +3,19 @@ require "pg"
 require_relative "add_form.rb"
 require_relative "return_data.rb"
 
-class AcesApp < Sinatra::Base
+# class AcesApp < Sinatra::Base
 
   get "/" do 
 
   	erb :starter
   end
 
-  get '/consol' do
+  post '/commit_form' do
 
-    erb :starter_consol
-  end
-
-  get '/commit_form' do
-
-    add_form(request.env['rack.request.query_hash'])
-
+    add_form(params[:user])
+    write_image(params[:user])
     redirect to '/'
   end
-
-  get '/commit_consol' do
-
-    q = request.env['rack.request.query_hash']
-
-    add_form(request.env['rack.request.query_hash'])
-
-    "#{q}"
-
-    # redirect to '/'
-  end
-
 
   get '/search' do
     erb :search
@@ -57,15 +40,18 @@ class AcesApp < Sinatra::Base
       h[ary.first.tr('\'','')] = ary.last.tr('\'','')
     end
     #user_hash = get_data(vals[vals.index{|s| s.include?("id")}].sub("id=", ""))
-    erb :update_form, :locals => {results: h}
+    image = pull_image(h["id"])
+    # "#{image}"
+    erb :update_form, :locals => {results: h, image: image}
   end
 
   get'/commit_updates' do
     user_hash = params[:user]
     update_values(user_hash)
+    write_image(user_hash)
     # user_hash = get_data(id)
     # update_values(user_hash)
 
     redirect to "/"
   end
-end
+# end

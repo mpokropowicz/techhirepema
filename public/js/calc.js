@@ -40,6 +40,11 @@ function homeOrMobile(choice) {
 		document.getElementById("exterior_walls_mobile").setAttribute("disabled", "true");
 		document.getElementById("roof_mobile").setAttribute("disabled", "true");
 		document.getElementById("interior_walls_mobile").setAttribute("disabled", "true");
+		document.getElementById("destroyed_mobile").setAttribute("disabled", "true");
+		document.getElementById("major_mobile").setAttribute("disabled", "true");
+		document.getElementById("minor_mobile").setAttribute("disabled", "true");
+		document.getElementById("affected_mobile").setAttribute("disabled", "true");
+		document.getElementById("inaccessible_mobile").setAttribute("disabled", "true");
 
 		document.getElementById("foundation_home").removeAttribute("disabled");
 		document.getElementById("floor_frame_home").removeAttribute("disabled");
@@ -49,6 +54,11 @@ function homeOrMobile(choice) {
 		document.getElementById("plumbing_home").removeAttribute("disabled");
 		document.getElementById("heating_ac_home").removeAttribute("disabled");
 		document.getElementById("electrical_home").removeAttribute("disabled");
+		document.getElementById("destroyed_home").removeAttribute("disabled");
+		document.getElementById("major_home").removeAttribute("disabled");
+		document.getElementById("minor_home").removeAttribute("disabled");
+		document.getElementById("affected_home").removeAttribute("disabled");
+		document.getElementById("inaccessible_home").removeAttribute("disabled");
 	} else {
 		document.getElementById("foundation_home").setAttribute("disabled", "true");
 		document.getElementById("floor_frame_home").setAttribute("disabled", "true");
@@ -58,11 +68,21 @@ function homeOrMobile(choice) {
 		document.getElementById("plumbing_home").setAttribute("disabled", "true");
 		document.getElementById("heating_ac_home").setAttribute("disabled", "true");
 		document.getElementById("electrical_home").setAttribute("disabled", "true");
+		document.getElementById("destroyed_home").setAttribute("disabled", "true");
+		document.getElementById("major_home").setAttribute("disabled", "true");
+		document.getElementById("minor_home").setAttribute("disabled", "true");
+		document.getElementById("affected_home").setAttribute("disabled", "true");
+		document.getElementById("inaccessible_home").setAttribute("disabled", "true");
 
 		document.getElementById("floor_frame_mobile").removeAttribute("disabled");
 		document.getElementById("exterior_walls_mobile").removeAttribute("disabled");
 		document.getElementById("roof_mobile").removeAttribute("disabled");
 		document.getElementById("interior_walls_mobile").removeAttribute("disabled");
+		document.getElementById("destroyed_mobile").removeAttribute("disabled");
+		document.getElementById("major_mobile").removeAttribute("disabled");
+		document.getElementById("minor_mobile").removeAttribute("disabled");
+		document.getElementById("affected_mobile").removeAttribute("disabled");
+		document.getElementById("inaccessible_mobile").removeAttribute("disabled");
 	}
 }
 
@@ -77,3 +97,5 @@ function numberValidation(system) {
 		document.getElementById(system).value = min;
 	}
 }
+
+homeOrMobile("Home");

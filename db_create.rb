@@ -12,18 +12,18 @@ begin
   #       user:ENV['dbuser'],
   #       password:ENV['dbpassword']
   #     }
-  db_params = {  # AWS db
-        host: ENV['host'],
-        port:ENV['port'],
-        dbname:ENV['dbname'],
-        user:ENV['dbuser'],
-        password:ENV['dbpassword']
-      }
-  # db_params = {  # local db
+  # db_params = {  # AWS db
+  #       host: ENV['host'],
+  #       port:ENV['port'],
   #       dbname:ENV['dbname'],
   #       user:ENV['dbuser'],
   #       password:ENV['dbpassword']
   #     }
+  db_params = {  # local db
+        dbname:ENV['dbname'],
+        user:ENV['dbuser'],
+        password:ENV['dbpassword']
+      }
   conn = PG::Connection.new(db_params)
 
   # drop common table if it exists
@@ -33,7 +33,8 @@ begin
   conn.exec "create table common (
              id int primary key,
              county varchar(60),
-             municipality_name varchar(60))"
+             municipality_name varchar(60),
+             image varchar(80))"
 
   # drop ind table if it exists
   conn.exec "drop table if exists ind"

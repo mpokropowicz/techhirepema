@@ -88,17 +88,7 @@
         <li class="header">Form Options</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="search"><i class="fa fa-link"></i> <span>Form Lookup</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
+      </ul>
         </li>
       </ul>
       <!-- /.sidebar-menu -->
@@ -130,24 +120,15 @@
     Basement Water Height(inches): <input type="number" name="user[basement_water]"  value="<%=results["basement_water"]%>"><br>
     First Floor Water Height(inches): <input type="number" name="user[first_floor_water]"  value="<%=results["first_floor_water"]%>"><br>
     Location Notes: <textarea rows="4" cols="50" name="user[location_notes]"><%=results["location_notes"]%></textarea><br>
-    <h3>Type of Applicant</h3>
-      <input type="radio" name="user[hometype]" value="renter">Renter<br>
-      <input type="radio" name="user[hometype]" value="homeowner">Homeowner<br>
-      Other: <input type="text" name="user[tasother"><br>
     <h3>Primary Home?</h3>
-      <input type="radio" name="user[primary_home]" value="yes">Yes<br>
-      <input type="radio" name="user[primary_home]" value="no">No<br>
+      <input type="radio" name="user[primary_home]" value="yes" <%= results["primary_home"] == "yes" ? "checked" : "" %>>Yes<br>
+      <input type="radio" name="user[primary_home]" value="no" <%= results["primary_home"] == "no" ? "checked" : "" %>>No<br>
     <h3>Renter?</h3>
-      <input type="radio" name="user[renter]" value="yes">Yes<br>
-      <input type="radio" name="user[renter]" value="no">No<br>
-    <h3>Type of Structure</h3>
-      <input type="radio" name="user[structure_type]" value="single">Single Family<br>
-      <input type="radio" name="user[structure_type]" value="multiple">Multiple Family<br>
-      <input type="radio" name="user[structure_type]" value="buisness">Buisness<br>
-      <input type="radio" name="user[structure_type]" value="nonprofit">Nonprofit<br>
+      <input type="radio" name="user[renter]" value="yes" <%= results["renter"] == "yes" ? "checked" : "" %>>Yes<br>
+      <input type="radio" name="user[renter]" value="no" <%= results["renter"] == "no" ? "checked" : "" %>>No<br>
     <h3>Flood Insurance?</h3>
-      <input type="radio" name="user[flood_insurance]" value="yes">Yes<br>
-      <input type="radio" name="user[flood_insurance]" value="no">No<br>
+      <input type="radio" name="user[flood_insurance]" value="yes" <%= results["flood_insurance"] == "yes" ? "checked" : "" %>>Yes<br>
+      <input type="radio" name="user[flood_insurance]" value="no" <%= results["flood_insurance"] == "no" ? "checked" : "" %>>No<br>
     <h3>Home or Mobile?</h3>
       <input type="radio" name="homeormobile" id="homeormobile" value="home" onclick="homeOrMobile('Home');">Home<br>
       <input type="radio" name="homeormobile" id="homeormobile" value="mobile" onclick="homeOrMobile('Mobile');">Mobile<br>
@@ -200,56 +181,57 @@
   </tr>
   <tr>
     <td class="tg-yw4l">Foundation</td>
-    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="7" name="user[foundation_home]" value="<%=results["foundation_home"]%>" id="foundation_home" onchange="onHomeChanged('foundation_home');">></td>
+    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="7" name="user[foundation_home]" value="<%=results["foundation_home"]%>" id="foundation_home" onchange="onHomeChanged('foundation_home');" data-toggle="tooltip" title="Home Foundation   If foundation is undermined, partially missing, sagging or shifted, it is damaged.  Conjunctive Damage: If these conditions are apparent, there is a good chance of damage to floor, plumbing, electrical, heating and walls system."></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">7</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td class="tg-yw4l">Floor(frame)</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="16" name="user[floor_frame_home]" value="<%=results["floor_frame_home"]%>" id="floor_frame_home" onchange="onHomeChanged('floor_frame_home');"></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="user[floor_frame_mobile]" value="<%=results["floor_frame_mobile"]%>" id="floor_frame_mobile" onchange="onMobileChanged('floor_frame_mobile');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="16" name="user[floor_frame_home]" value="<%=results["floor_frame_home"]%>" id="floor_frame_home" onchange="onHomeChanged('floor_frame_home');" data-toggle="tooltip" title="Home Floor System   If shifted, sagging or has been submerged in water, it is damaged.
+Conjunctive Damage: If damaged, the exterior wall, interior wall, and finish, electrical and heating systems are also damaged."></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="user[floor_frame_mobile]" value="<%=results["floor_frame_mobile"]%>" id="floor_frame_mobile" onchange="onMobileChanged('floor_frame_mobile');" data-toggle="tooltip" title="Mobile Home Floor (Frame)   If the frame is twisted, buckled or broken, it is damaged.  Conjunctive Damage: If the frame is damaged, there is almost always damage to the wall, roof and interior wall systems.  (IF OFF FOUNDATION DUE TO FLOOING OR WIND - LIST AS DESTROYED)"></td>
     <td class="tg-baqh">16</td>
     <td class="tg-baqh">20</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Exterior Walls</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="14" name="user[exterior_walls_home]" value="<%=results["exterior_walls_home"]%>" id="exterior_walls_home" onchange="onHomeChanged('exterior_walls_home');"></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="35" name="user[exterior_walls_mobile]" value="<%=results["exterior_walls_mobile"]%>" id="exterior_walls_mobile" onchange="onMobileChanged('exterior_walls_mobile');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="14" name="user[exterior_walls_home]" value="<%=results["exterior_walls_home"]%>" id="exterior_walls_home" onchange="onHomeChanged('exterior_walls_home');" data-toggle="tooltip" title="Home Exterior Walls   If missing, shifted, distorted or cracked, it is damaged.  Conjunctive Damage: If exterior wall system is damaged, there is a good chance the roof, electric, plumbing and interior wall systems are damaged."></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="35" name="user[exterior_walls_mobile]" value="<%=results["exterior_walls_mobile"]%>" id="exterior_walls_mobile" onchange="onMobileChanged('exterior_walls_mobile');" data-toggle="tooltip" title="Mobile Home Exterior Walls   If wall studs are broken, missing, or distorted, the system is damaged.  Damaged is minimal if ONLY the exterior covering or skin is damaged.  Conjunctive Damage: If the wall system is heavily damaged, the roof and interior wall systems are usually damaged."></td>
     <td class="tg-baqh">14</td>
     <td class="tg-baqh">35</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Roof</td>
-    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="9" name="user[roof_home]" value="<%=results["roof_home"]%>" id="roof_home" onchange="onHomeChanged('roof_home');"></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="user[roof_mobile]" value="<%=results["roof_mobile"]%>" id="roof_mobile" onchange="onMobileChanged('roof_mobile');"></td>
+    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="9" name="user[roof_home]" value="<%=results["roof_home"]%>" id="roof_home" onchange="onHomeChanged('roof_home');" data-toggle="tooltip" title="Home Roof   If missing, sagging, collapsed, or submerged, it is damaged.  Conjunctive Damage:  All systems damaged if roof is flood damaged; exterior wall, electrical and interior wall systems are usually damaged."></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="user[roof_mobile]" value="<%=results["roof_mobile"]%>" id="roof_mobile" onchange="onMobileChanged('roof_mobile');" data-toggle="tooltip" title="Mobile Home Roof   If roof covering or framing is missing, torn or punctured, it is damaged.  Conjunctive: If the roof system is damaged, there is usually damage to the interior wall system.  Severe damage to the roof system's framing usually results in exterior wall system."></td>
     <td class="tg-baqh">9</td>
     <td class="tg-baqh">20</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Interior Walls</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[interior_walls_home]" value="<%=results["interior_walls_home"]%>" id="interior_walls_home" onchange="onHomeChanged('interior_walls_home');"></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="25" name="user[interior_walls_mobile]" value="<%=results["interior_walls_mobile"]%>" id="interior_walls_mobile" onchange="onMobileChanged('interior_walls_mobile');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[interior_walls_home]" value="<%=results["interior_walls_home"]%>" id="interior_walls_home" onchange="onHomeChanged('interior_walls_home');" data-toggle="tooltip" title="Home Interior Walls   If you can see interior walls and finish, they are damaged.  Damage is usually conjunctive with damage to four observable systems."></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="25" name="user[interior_walls_mobile]" value="<%=results["interior_walls_mobile"]%>" id="interior_walls_mobile" onchange="onMobileChanged('interior_walls_mobile');" data-toggle="tooltip" title="Mobile Home Interior Walls   If the interior walls and built-ins are missing, shifted, or have collapsed, the system is damaged.  Water usually causes extensive damage.  Conjunctive Damage: Almost always involves damage to the other three systems."></td>
     <td class="tg-baqh">28</td>
     <td class="tg-baqh">25</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Plumbing</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="user[plumbing_home]" value="<%=results["plumbing_home"]%>" id="plumbing_home" onchange="onHomeChanged('plumbing_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="user[plumbing_home]" value="<%=results["plumbing_home"]%>" id="plumbing_home" onchange="onHomeChanged('plumbing_home');" data-toggle="tooltip" title="Home Plumbing   Water supply and/or waster water items are broken or contaminated.  Damage is usually conjunctive with foundation, floor and exterior wall system damage."></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">10</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td class="tg-yw4l">Heating/A.C.</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="user[heating_ac_home]" value="<%=results["heating_ac_home"]%>" id="heating_ac_home" onchange="onHomeChanged('heating_ac_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="user[heating_ac_home]" value="<%=results["heating_ac_home"]%>" id="heating_ac_home" onchange="onHomeChanged('heating_ac_home');" data-toggle="tooltip" title="Home Heating and A/C   If submerged, it is damaged; when the fuel source, the A.C./Heating unit, vents and/or the heat distribution systems are missing, disconnected or crushed, the system is damaged."></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">10</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td class="tg-yw4l">Electrical</td>
-    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="6" name= "electrical_home]" value="<%=results["electrical_home"]%>" id="electrical_home" onchange="onHomeChanged('electrical_home');"></td>
+    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="6" name= "electrical_home]" value="<%=results["electrical_home"]%>" id="electrical_home" onchange="onHomeChanged('electrical_home');" data-toggle="tooltip" title="Home Electrical   If submerged, it is damaged; when the service entrance or any part of the interior distribution system is missing or disconnected, the system is damaged."></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">6</td>
     <td class="tg-4luf"></td>
@@ -272,32 +254,34 @@
     </tr>
     <tr>
       <td class="tg-s6z2">Destroyed</td>
-      <td class="tg-s6z2"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[destroyed_home]" value="<%=results["destroyed_home"]%>"></td>
-      <td class="tg-s6z2"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[destroyed_mobile]" value="<%=results["destroyed_mobile"]%>"></td>
+      <td class="tg-s6z2"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[destroyed_home]" value="<%=results["destroyed_home"]%>" id="destroyed_home" data-toggle="tooltip" title="Home Destroyed   All major structural systems damaged or destroyed; habitation is not possible"></td>
+      <td class="tg-s6z2"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[destroyed_mobile]" value="<%=results["destroyed_mobile"]%>" id="destroyed_mobile" data-toggle="tooltip" title="Mobile Home Destroyed   Two or more systems have substantial damage."></td>
     </tr>
     <tr>
       <td class="tg-baqh">Major</td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[major_home]" value="<%=results["major_home"]%>"></td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[major_mobile]" value="<%=results["major_mobile"]%>"></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[major_home]" value="<%=results["major_home"]%>" id="major_home" data-toggle="tooltip" title="Home Major Damage   Four or more structural systems are damaged or destroyed resulting in over 45 percent total damage.  Extensive repairs are necessary, and habitation will not be possible for at least 30 days after the start of repairs."></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[major_mobile]" value="<%=results["major_mobile"]%>" id="major_mobile" data-toggle="tooltip" title="Mobile Home Major Damage   One system has substantial damage."></td>
     </tr>
     <tr>
       <td class="tg-baqh">Minor</td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[minor_home]" value="<%=results["minor_home"]%>"></td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[minor_mobile]" value="<%=results["minor_mobile"]%>"></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[minor_home]" value="<%=results["minor_home"]%>" id="minor_home" data-toggle="tooltip" title="Home Minor Damage   One to three structural systems damaged; habitation possible now or within 30 days of the start of temporary or permanent repairs."></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[minor_mobile]" value="<%=results["minor_mobile"]%>" id="minor_mobile" data-toggle="tooltip" title="Mobile Home Minor Damage   One or two systems have superficial damage."></td>
     </tr>
     <tr>
       <td class="tg-baqh">Affected</td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[affected_home]" value="<%=results["affected_home"]%>"></td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[affected_mobile]" value="<%=results["affected_mobile"]%>"></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[affected_home]" value="<%=results["affected_home"]%>" id="affected_home" data-toggle="tooltip" title="Home Affected   Some damage to structure and suspected damage to contents.  Structure is usable without repairs (Minor basement flooding)."></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[affected_mobile]" value="<%=results["affected_mobile"]%>" id="affected_mobile" data-toggle="tooltip" title="Mobile Home Affected   Some damage to structure and suspected damage to contents.  Structure is usable without repairs (Minor basement flooding)."></td>
     </tr>
     <tr>
       <td class="tg-baqh">Inaccessible</td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[inaccessible_home]" value="<%=results["inaccessible_home"]%>"></td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[inaccessible_mobile]" value="<%=results["inaccessible_mobile"]%>"></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[inaccessible_home]" value="<%=results["inaccessible_home"]%>" id="inaccessible_home" data-toggle="tooltip" title="Home Inaccessible   This group includes homes that are inaccessible by normal means, due to disaster-related road closures (e.g., bridge out, road flooded or blocked by landslide, mudslide, severe erosion, washed out, etc.)"></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[inaccessible_mobile]" value="<%=results["inaccessible_mobile"]%>" id="inaccessible_mobile" data-toggle="tooltip" title="Mobile Home Inaccessible   This group includes mobile homes that are inaccessible by normal means, due to disaster-related road closures (e.g., bridge out, road flooded or blocked by landslide, mudslide, severe erosion, washed out, etc.)"></td>
     </tr>
   </table><br>
   <input type="hidden" name="user[id]" value="<%=results["id"]%>">
+  <img src=<%= image %>>
   <input type="submit">
+  <input type="file" name="image" accept="image/*">
 </form>
     </section>
     <!-- /.content -->
