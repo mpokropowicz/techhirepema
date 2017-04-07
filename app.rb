@@ -3,14 +3,26 @@ require "pg"
 require_relative "add_form.rb"
 require_relative "return_data.rb"
 
-# class AcesApp < Sinatra::Base
+class AcesApp < Sinatra::Base
 
   get "/" do 
 
   	erb :starter
   end
 
+  get '/consol' do
+
+    erb :starter_consol
+  end
+
   get '/commit_form' do
+
+    add_form(request.env['rack.request.query_hash'])
+
+    redirect to '/'
+  end
+
+  get '/commit_consol' do
 
     q = request.env['rack.request.query_hash']
 
@@ -20,6 +32,7 @@ require_relative "return_data.rb"
 
     # redirect to '/'
   end
+
 
   get '/search' do
     erb :search
@@ -55,4 +68,4 @@ require_relative "return_data.rb"
 
     redirect to "/"
   end
-# end
+end

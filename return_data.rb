@@ -6,18 +6,18 @@ load "./local_env.rb" if File.exists?("./local_env.rb")
 def open_db()
   begin
     #connect to the database
-   db_params = {  # local test
-        dbname:ENV['dbname'],
-        user:ENV['dbuser'],
-        password:ENV['dbpassword']
-      }
-   # db_params = {  # AWS db
-   #      host: ENV['host'],
-   #      port:ENV['port'],
+   # db_params = {  # local test
    #      dbname:ENV['dbname'],
    #      user:ENV['dbuser'],
    #      password:ENV['dbpassword']
    #    }
+   db_params = {  # AWS db
+        host: ENV['host'],
+        port:ENV['port'],
+        dbname:ENV['dbname'],
+        user:ENV['dbuser'],
+        password:ENV['dbpassword']
+      }
     conn = PG::Connection.new(db_params)
   rescue PG::Error => e
     puts 'Exception occurred'
