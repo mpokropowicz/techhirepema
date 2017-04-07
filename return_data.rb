@@ -6,18 +6,18 @@ load "./local_env.rb" if File.exists?("./local_env.rb")
 def open_db()
   begin
     #connect to the database
-   db_params = {  # local test
-        dbname:ENV['dbname'],
-        user:ENV['dbuser'],
-        password:ENV['dbpassword']
-      }
-   # db_params = {  # AWS db
-   #      host: ENV['host'],
-   #      port:ENV['port'],
+   # db_params = {  # local test
    #      dbname:ENV['dbname'],
    #      user:ENV['dbuser'],
    #      password:ENV['dbpassword']
    #    }
+   db_params = {  # AWS db
+        host: ENV['host'],
+        port:ENV['port'],
+        dbname:ENV['dbname'],
+        user:ENV['dbuser'],
+        password:ENV['dbpassword']
+      }
     conn = PG::Connection.new(db_params)
   rescue PG::Error => e
     puts 'Exception occurred'
@@ -54,13 +54,21 @@ def pull_image(value)
   image = "images/uploads/#{id}/#{image_name}"
 end
 
-def update_values(columns)
+def get_image_name(user_hash)
+  image_name = user_hash["image"][:filename]
+end
+
+# Method to update any number of values in any number of tables
+# - user hash needs to contain id of current record that needs to be updated
+# - order is not important (the id can be anywhere in the hash)
+def update_values(user_hash)
   begin
-    id = columns["id"]  # determine the id for the current record
+    id = user_hash["id"]  # determine the id for the current record
     conn = open_db() # open database for updating
-    columns.each do |column, value|  # iterate through columns hash for each column/value pair
+    user_hash.each do |column, value|  # iterate through user_hash for each column/value pair
       unless column == "id"  # we do NOT want to update the id
         table = match_table(column)  # determine which table contains the specified column
+        value = get_image_name(user_hash) if column == "image"  # get image name from nested array
         # workaround for table name being quoted and column name used as bind parameter
         query = "update " + table + " set " + column + " = $2 where id = $1"
         conn.prepare('q_statement', query)

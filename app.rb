@@ -3,7 +3,7 @@ require "pg"
 require_relative "add_form.rb"
 require_relative "return_data.rb"
 
-# class AcesApp < Sinatra::Base
+class AcesApp < Sinatra::Base
 
   get "/" do 
 
@@ -45,13 +45,9 @@ require_relative "return_data.rb"
     erb :update_form, :locals => {results: h, image: image}
   end
 
-  get'/commit_updates' do
+  post '/commit_updates' do
     user_hash = params[:user]
     update_values(user_hash)
-    write_image(user_hash)
-    # user_hash = get_data(id)
-    # update_values(user_hash)
-
     redirect to "/"
   end
-# end
+end

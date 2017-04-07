@@ -102,7 +102,7 @@
     </section>
     <!-- Main content -->
     <section class="content">
-    <form action='/commit_updates'>
+    <form action='/commit_updates' enctype="multipart/form-data" method="post">
     <h3>General Information</h3>
     Name: <input type ="text" name="user[name]" value="<%=results["name"]%>"><br>
     Address: <input type ="text" name="user[street_address]" value="<%=results["street_address"]%>"><br>
@@ -281,7 +281,7 @@ Conjunctive Damage: If damaged, the exterior wall, interior wall, and finish, el
   <input type="hidden" name="user[id]" value="<%=results["id"]%>">
   <img src=<%= image %>>
   <input type="submit">
-  <input type="file" name="image" accept="image/*">
+  <input type="file" name="image" accept="image/*" value="<%=results["image"]%>">
 </form>
     </section>
     <!-- /.content -->
