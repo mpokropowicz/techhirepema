@@ -3,7 +3,7 @@ require "pg"
 require_relative "add_form.rb"
 require_relative "return_data.rb"
 
-class AcesApp < Sinatra::Base
+# class AcesApp < Sinatra::Base
 
   get "/" do 
 
@@ -12,9 +12,13 @@ class AcesApp < Sinatra::Base
 
   get '/commit_form' do
 
+    q = request.env['rack.request.query_hash']
+
     add_form(request.env['rack.request.query_hash'])
 
-    redirect to '/'
+    "#{q}"
+
+    # redirect to '/'
   end
 
   get '/search' do
@@ -33,9 +37,14 @@ class AcesApp < Sinatra::Base
   end
 
   post '/update_form' do
-    vals = params[:vars].split("&")
+    vals = params[:vars]
+    h = {}
+    vals.split(',').each do |substr|
+      ary = substr.strip.split('=>')
+      h[ary.first.tr('\'','')] = ary.last.tr('\'','')
+    end
     #user_hash = get_data(vals[vals.index{|s| s.include?("id")}].sub("id=", ""))
-    erb :update_form, :locals => {results: vals}
+    erb :update_form, :locals => {results: h}
   end
 
   get'/commit_updates' do
@@ -44,6 +53,6 @@ class AcesApp < Sinatra::Base
     # user_hash = get_data(id)
     # update_values(user_hash)
 
-    "#{user_hash}"
+    redirect to "/"
   end
-end
+# end

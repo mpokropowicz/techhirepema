@@ -135,19 +135,22 @@
       <input type="radio" name="hometype" value="homeowner">Homeowner<br>
       Other: <input type="text" name="tasother"><br>
     <h3>Primary Home?</h3>
-      <input type="radio" name="primary_home?" value="yes">Yes<br>
-      <input type="radio" name="primary_home?" value="no">No<br>
+      <input type="radio" name="primary_home" value="yes">Yes<br>
+      <input type="radio" name="primary_home" value="no">No<br>
     <h3>Renter?</h3>
-      <input type="radio" name="renter?" value="yes">Yes<br>
-      <input type="radio" name="renter?" value="no">No<br>
+      <input type="radio" name="renter" value="yes">Yes<br>
+      <input type="radio" name="renter" value="no">No<br>
     <h3>Type of Structure</h3>
       <input type="radio" name="structure_type" value="single">Single Family<br>
       <input type="radio" name="structure_type" value="multiple">Multiple Family<br>
       <input type="radio" name="structure_type" value="buisness">Buisness<br>
       <input type="radio" name="structure_type" value="nonprofit">Nonprofit<br>
     <h3>Flood Insurance?</h3>
-      <input type="radio" name="flood_insurance?" value="yes">Yes<br>
-      <input type="radio" name="flood_insurance?" value="no">No<br>
+      <input type="radio" name="flood_insurance" value="yes">Yes<br>
+      <input type="radio" name="flood_insurance" value="no">No<br>
+    <h3>Home or Mobile?</h3>
+      <input type="radio" name="homeormobile" id="homeormobile" value="home" onclick="homeOrMobile('Home');">Home<br>
+      <input type="radio" name="homeormobile" id="homeormobile" value="mobile" onclick="homeOrMobile('Mobile');">Mobile<br>
     <!-- <h3>Market Value of Property</h3>
       <h4 class="tabbed">Structure</h4>
       <input class ="tabbed" type="number" name="structure_mv">
@@ -197,63 +200,64 @@
   </tr>
   <tr>
     <td class="tg-yw4l">Foundation</td>
-    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="7" name="foundation_home"></td>
+    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="7" name="foundation_home" value=0 id="foundation_home" onchange="onHomeChanged('foundation_home');"></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">7</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td class="tg-yw4l">Floor(frame)</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="16" name="floor_frame_home"></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="floor_frame_mobile"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="16" name="floor_frame_home" value=0 id="floor_frame_home" onchange="onHomeChanged('floor_frame_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="floor_frame_mobile" value="0" id="floor_frame_mobile" onchange="onMobileChanged('floor_frame_mobile');"></td>
     <td class="tg-baqh">16</td>
     <td class="tg-baqh">20</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Exterior Walls</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="14" name="exterior_walls_home"></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="35" name="exterior_walls_mobile"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="14" name="exterior_walls_home" value=0 id="exterior_walls_home" onchange="onHomeChanged('exterior_walls_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="35" name="exterior_walls_mobile" value="0" id="exterior_walls_mobile" onchange="onMobileChanged('exterior_walls_mobile');"></td>
     <td class="tg-baqh">14</td>
     <td class="tg-baqh">35</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Roof</td>
-    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="9" name="roof_home"></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="roof_mobile"></td>
+    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="9" name="roof_home" value=0 id="roof_home" onchange="onHomeChanged('roof_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="roof_mobile" value="0" id="roof_mobile" onchange="onMobileChanged('roof_mobile');"></td>
     <td class="tg-baqh">9</td>
     <td class="tg-baqh">20</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Interior Walls</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="interior_walls_home"></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="25" name="interior_walls_mobile"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="interior_walls_home" value=0 id="interior_walls_home" onchange="onHomeChanged('interior_walls_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="25" name="interior_walls_mobile" value="0" id="interior_walls_mobile" onchange="onMobileChanged('interior_walls_mobile');"></td>
     <td class="tg-baqh">28</td>
     <td class="tg-baqh">25</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Plumbing</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="plumbing_home"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="plumbing_home" value=0 id="plumbing_home" onchange="onHomeChanged('plumbing_home');"></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">10</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td class="tg-yw4l">Heating/A.C.</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="heating_ac_home"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="heating_ac_home" value=0 id="heating_ac_home" onchange="onHomeChanged('heating_ac_home');"></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">10</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td class="tg-yw4l">Electrical</td>
-    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="6" name= "electrical_home"></td>
+    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="6" name="electrical_home" value=0 id="electrical_home" onchange="onHomeChanged('electrical_home');"></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">6</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td>Total % Damaged</td>
-    <td colspan="2">
+    <td id="home_total_pct_damaged">0
+    <td id="mobile_total_pct_damaged">0
     <td colspan="2">
   </tr>
   </table><br>
@@ -292,7 +296,6 @@
       <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="inaccessible_mobile"</td>
     </tr>
   </table><br>
-
   <input type="submit">
 </form>
     </section>
@@ -322,5 +325,7 @@
 <script src="js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="js/app.min.js"></script>
+
+<script src="js/calc.js"></script>
 </body>
 </html>

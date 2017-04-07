@@ -111,18 +111,13 @@
     <section class="content-header">
     </section>
     <section class="content">
-    <!-- <form action="update_form">
-    <% results.each_with_index do |hash, index| %>
-    <% val =  hash.map{|k,v| "#{k}=#{v}"}.join('&') %>
-    <% val = val.delete(' ') %>
-    <button name="vars" value=<%=val%>><%= results[index].values_at("name").join(' ') %>, <%= results[index].values_at("street_address").join(" ") %></button><br>
-    <% end %>
-    </form> -->
     <form action="update_form" method="post">
     <% results.each_with_index do |hash, index| %>
-    <% val =  hash.map{|k,v| "#{k}=#{v}"}.join('&') %>
-    <% val = val.delete(" ") %>
-    <button name="vars" value=<%=val%>><%= results[index].values_at("name").join(' ') %>, <%= results[index].values_at("street_address").join(" ") %>, <%= results[index].values_at("municipality_name").join("") %></button><br>
+    <% val = results[index].to_s %>
+    <% val = val.delete("{").delete("}") %>
+    <% val = val.tr("\"", "'") %>
+    <button name="vars" value="<%= val %>"><%= hash["name"] %>, <%= hash["street_address"] %>, <%= hash["municipality_name"] %></button><br>
+    <!-- <input type="hidden" name="vars" value="<%= val %>"> -->
     <%end%>
     </form>
     </section>

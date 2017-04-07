@@ -31,18 +31,18 @@ def add_form(form_hash)
   #       user:ENV['dbuser'],
   #       password:ENV['dbpassword']
   #     }
-  db_params = {  # AWS db
-        host: ENV['host'],
-        port:ENV['port'],
-        dbname:ENV['dbname'],
-        user:ENV['dbuser'],
-        password:ENV['dbpassword']
-      }
-  # db_params = {  # local db
+  # db_params = {  # AWS db
+  #       host: ENV['host'],
+  #       port:ENV['port'],
   #       dbname:ENV['dbname'],
   #       user:ENV['dbuser'],
   #       password:ENV['dbpassword']
   #     }
+  db_params = {  # local db
+        dbname:ENV['dbname'],
+        user:ENV['dbuser'],
+        password:ENV['dbpassword']
+      }
   conn = PG::Connection.new(db_params)
 
   # local database connection
@@ -169,3 +169,5 @@ ensure
 
 end
 end
+
+add_form({"name"=>"Max", "street_address"=>"", "date_damaged"=>"", "county"=>"", "municipality_name"=>"", "city"=>"", "zip_code"=>"", "longitude"=>"", "latitude"=>"", "incident_type"=>"", "basement_water"=>"", "first_floor_water"=>"", "location_notes"=>"", "tasother"=>"", "foundation_home"=>"0", "floor_frame_home"=>"0", "floor_frame_mobile"=>"0", "exterior_walls_home"=>"0", "exterior_walls_mobile"=>"0", "roof_home"=>"0", "roof_mobile"=>"0", "interior_walls_home"=>"0", "interior_walls_mobile"=>"0", "plumbing_home"=>"0", "heating_ac_home"=>"0", "electrical_home"=>"0", "destroyed_home"=>"", "destroyed_mobile"=>"", "major_home"=>"", "major_mobile"=>"", "minor_home"=>"", "minor_mobile"=>"", "affected_home"=>"", "affected_mobile"=>"", "inaccessible_home"=>"", "inaccessible_mobile"=>""})

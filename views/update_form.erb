@@ -22,7 +22,7 @@
   <!-- Main Header -->
   <header class="main-header">
     <!-- Logo -->
-    <a href="" class="logo">
+    <a href="/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>ACES</span>
       <!-- logo for regular state and mobile devices -->
@@ -114,41 +114,44 @@
     <section class="content">
     <form action='/commit_updates'>
     <h3>General Information</h3>
-    Name: <input type ="text" name="user[name]" value=<%=results[results.index{|s| s.include?("name") if s[0]=="n"}].sub("name=", "")%>><br>
-    Address: <input type ="text" name="user[street_address]" value=<%=results[results.index{|s| s.include?("street_address")}].sub("street_address=", "")%>><br>
+    Name: <input type ="text" name="user[name]" value="<%=results["name"]%>"><br>
+    Address: <input type ="text" name="user[street_address]" value="<%=results["street_address"]%>"><br>
 <!--     PDA Date: <input type ="date" name="user[pda_date"><br>
     Date: <input type ="date" name="user[date"><br> -->
-    Date of Damage: <input type ="date" name="user[date_damaged]" value=<%=results[results.index{|s| s.include?("date_damaged")}].sub("date_damaged=", "")%>><br>
-    County: <input type ="text" name ="user[county]" value=<%=results[results.index{|s| s.include?("county")}].sub("county=", "")%>><br>
-    Municipality: <input type ="text" name="user[municipality_name]" value=<%=results[results.index{|s| s.include?("municipality_name")}].sub("municipality_name=", "")%>><br>
-    City: <input type ="text" name="user[city]" value=<%=results[results.index{|s| s.include?("city")}].sub("city=", "")%>><br>
+    Date of Damage: <input type ="date" name="user[date_damaged]" value="<%=results["date_damaged"]%>"><br>
+    County: <input type ="text" name ="user[county]" value="<%=results["county"]%>"><br>
+    Municipality: <input type ="text" name="user[municipality_name]" value="<%=results["municipality_name"]%>"><br>
+    City: <input type ="text" name="user[city]" value="<%=results["city"]%>"><br>
     <!-- Code: <input type ="text" name="user[municipality_code"><br> -->
-    Zip Code: <input type ="number" name="user[zip_code]" value=<%=results[results.index{|s| s.include?("zip_code")}].sub("zip_code=", "")%>><br>
-    Longitude: <input type ="number" name="user[longitude]" value=<%=results[results.index{|s| s.include?("longitude")}].sub("longitude=", "")%>><br>
-    Latitude: <input type ="number" name="user[latitude"  value=<%=results[results.index{|s| s.include?("latitude")}].sub("latitude=", "")%>><br>
-    Type of Disaster: <input type ="text" name="user[incident_type"><br>
-    Basement Water Height(inches): <input type="number" name="user[basement_water"  value=<%=results[results.index{|s| s.include?("basement_water")}].sub("basement_water=", "")%>><br>
-    First Floor Water Height(inches): <input type="number" name="user[first_floor_water"  value=<%=results[results.index{|s| s.include?("first_floor_water")}].sub("first_floor_water=", "")%>><br>
-    Location Notes: <textarea rows="4" cols="50" name="user[location_notes" ><%=results[results.index{|s| s.include?("location_notes")}].sub("location_notes=", "")%></textarea><br>
+    Zip Code: <input type ="number" name="user[zip_code]" value="<%=results["zip_code"]%>"><br>
+    Longitude: <input type ="number" name="user[longitude]" value="<%=results["longitude"]%>"><br>
+    Latitude: <input type ="number" name="user[latitude"  value="<%=results["latitude"]%>"><br>
+    <!-- Type of Disaster: <input type ="text" name="user[incident_type]"><br> -->
+    Basement Water Height(inches): <input type="number" name="user[basement_water]"  value="<%=results["basement_water"]%>"><br>
+    First Floor Water Height(inches): <input type="number" name="user[first_floor_water]"  value="<%=results["first_floor_water"]%>"><br>
+    Location Notes: <textarea rows="4" cols="50" name="user[location_notes]"><%=results["location_notes"]%></textarea><br>
     <h3>Type of Applicant</h3>
       <input type="radio" name="user[hometype]" value="renter">Renter<br>
       <input type="radio" name="user[hometype]" value="homeowner">Homeowner<br>
       Other: <input type="text" name="user[tasother"><br>
     <h3>Primary Home?</h3>
-      <input type="radio" name="user[primary_home?]" value="yes">Yes<br>
-      <input type="radio" name="user[primary_home?]" value="no">No<br>
+      <input type="radio" name="user[primary_home]" value="yes">Yes<br>
+      <input type="radio" name="user[primary_home]" value="no">No<br>
     <h3>Renter?</h3>
-      <input type="radio" name="user[renter?]" value="yes">Yes<br>
-      <input type="radio" name="user[renter?]" value="no">No<br>
+      <input type="radio" name="user[renter]" value="yes">Yes<br>
+      <input type="radio" name="user[renter]" value="no">No<br>
     <h3>Type of Structure</h3>
       <input type="radio" name="user[structure_type]" value="single">Single Family<br>
       <input type="radio" name="user[structure_type]" value="multiple">Multiple Family<br>
       <input type="radio" name="user[structure_type]" value="buisness">Buisness<br>
       <input type="radio" name="user[structure_type]" value="nonprofit">Nonprofit<br>
     <h3>Flood Insurance?</h3>
-      <input type="radio" name="user[flood_insurance?]" value="yes">Yes<br>
-      <input type="radio" name="user[flood_insurance?]" value="no">No<br>
-<!--     <h3>Market Value of Property</h3>
+      <input type="radio" name="user[flood_insurance]" value="yes">Yes<br>
+      <input type="radio" name="user[flood_insurance]" value="no">No<br>
+    <h3>Home or Mobile?</h3>
+      <input type="radio" name="homeormobile" id="homeormobile" value="home" onclick="homeOrMobile('Home');">Home<br>
+      <input type="radio" name="homeormobile" id="homeormobile" value="mobile" onclick="homeOrMobile('Mobile');">Mobile<br>
+    <!-- <h3>Market Value of Property</h3>
       <h4 class="tabbed">Structure</h4>
       <input class ="tabbed" type="number" name="user[structure_mv]">
       <h4 class="tabbed">Contents</h4>
@@ -197,63 +200,64 @@
   </tr>
   <tr>
     <td class="tg-yw4l">Foundation</td>
-    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="7" name="user[foundation_home]" value=<%=results[results.index{|s| s.include?("foundation_home")}].sub("foundation_home=", "")%>></td>
+    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="7" name="user[foundation_home]" value="<%=results["foundation_home"]%>" id="foundation_home" onchange="onHomeChanged('foundation_home');">></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">7</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td class="tg-yw4l">Floor(frame)</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="16" name="user[floor_frame_home]" value=<%=results[results.index{|s| s.include?("floor_frame_home")}].sub("floor_frame_home=", "")%>></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="user[floor_frame_mobile]" value=<%=results[results.index{|s| s.include?("floor_frame_mobile")}].sub("floor_frame_mobile=", "")%>></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="16" name="user[floor_frame_home]" value="<%=results["floor_frame_home"]%>" id="floor_frame_home" onchange="onHomeChanged('floor_frame_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="user[floor_frame_mobile]" value="<%=results["floor_frame_mobile"]%>" id="floor_frame_mobile" onchange="onMobileChanged('floor_frame_mobile');"></td>
     <td class="tg-baqh">16</td>
     <td class="tg-baqh">20</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Exterior Walls</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="14" name="user[exterior_walls_home]" value=<%=results[results.index{|s| s.include?("exterior_walls_home")}].sub("exterior_walls_home=", "")%>></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="35" name="user[exterior_walls_mobile]" value=<%=results[results.index{|s| s.include?("exterior_walls_mobile")}].sub("exterior_walls_mobile=", "")%>></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="14" name="user[exterior_walls_home]" value="<%=results["exterior_walls_home"]%>" id="exterior_walls_home" onchange="onHomeChanged('exterior_walls_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="35" name="user[exterior_walls_mobile]" value="<%=results["exterior_walls_mobile"]%>" id="exterior_walls_mobile" onchange="onMobileChanged('exterior_walls_mobile');"></td>
     <td class="tg-baqh">14</td>
     <td class="tg-baqh">35</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Roof</td>
-    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="9" name="user[roof_home]" value=<%=results[results.index{|s| s.include?("roof_home")}].sub("roof_home=", "")%>></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="user[roof_mobile]" value=<%=results[results.index{|s| s.include?("roof_mobile")}].sub("roof_mobile=", "")%>></td>
+    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="9" name="user[roof_home]" value="<%=results["roof_home"]%>" id="roof_home" onchange="onHomeChanged('roof_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="20" name="user[roof_mobile]" value="<%=results["roof_mobile"]%>" id="roof_mobile" onchange="onMobileChanged('roof_mobile');"></td>
     <td class="tg-baqh">9</td>
     <td class="tg-baqh">20</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Interior Walls</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[interior_walls_home]" value=<%=results[results.index{|s| s.include?("interior_walls_home")}].sub("interior_walls_home=", "")%>></td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="25" name="user[interior_walls_mobile]" value=<%=results[results.index{|s| s.include?("interior_walls_mobile")}].sub("interior_walls_mobile=", "")%>></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[interior_walls_home]" value="<%=results["interior_walls_home"]%>" id="interior_walls_home" onchange="onHomeChanged('interior_walls_home');"></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="25" name="user[interior_walls_mobile]" value="<%=results["interior_walls_mobile"]%>" id="interior_walls_mobile" onchange="onMobileChanged('interior_walls_mobile');"></td>
     <td class="tg-baqh">28</td>
     <td class="tg-baqh">25</td>
   </tr>
   <tr>
     <td class="tg-yw4l">Plumbing</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="user[plumbing_home]" value=<%=results[results.index{|s| s.include?("plumbing_home")}].sub("plumbing_home=", "")%>></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="user[plumbing_home]" value="<%=results["plumbing_home"]%>" id="plumbing_home" onchange="onHomeChanged('plumbing_home');"></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">10</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td class="tg-yw4l">Heating/A.C.</td>
-    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="user[heating_ac_home]" value=<%=results[results.index{|s| s.include?("heating_ac_home")}].sub("heating_ac_home=", "")%>></td>
+    <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="10" name="user[heating_ac_home]" value="<%=results["heating_ac_home"]%>" id="heating_ac_home" onchange="onHomeChanged('heating_ac_home');"></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">10</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td class="tg-yw4l">Electrical</td>
-    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="6" name= "electrical_home]" value=<%=results[results.index{|s| s.include?("electrical_home")}].sub("electrical_home=", "")%>></td>
+    <td class="tg-baqh"><input type="number" size="1" maxlength="1" min="0" max="6" name= "electrical_home]" value="<%=results["electrical_home"]%>" id="electrical_home" onchange="onHomeChanged('electrical_home');"></td>
     <td class="tg-4luf"></td>
     <td class="tg-baqh">6</td>
     <td class="tg-4luf"></td>
   </tr>
   <tr>
     <td>Total % Damaged</td>
-    <td colspan="2">
+    <td id="home_total_pct_damaged">0
+    <td id="mobile_total_pct_damaged">0
     <td colspan="2">
   </tr>
   </table><br>
@@ -268,31 +272,31 @@
     </tr>
     <tr>
       <td class="tg-s6z2">Destroyed</td>
-      <td class="tg-s6z2"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[destroyed_home]" value=<%=results[results.index{|s| s.include?("destroyed_home")}].sub("destroyed_home=", "")%>></td>
-      <td class="tg-s6z2"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[destroyed_mobile]" value=<%=results[results.index{|s| s.include?("destroyed_mobile")}].sub("destroyed_mobile=", "")%>></td>
+      <td class="tg-s6z2"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[destroyed_home]" value="<%=results["destroyed_home"]%>"></td>
+      <td class="tg-s6z2"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[destroyed_mobile]" value="<%=results["destroyed_mobile"]%>"></td>
     </tr>
     <tr>
       <td class="tg-baqh">Major</td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[major_home]" value=<%=results[results.index{|s| s.include?("major_home")}].sub("major_home=", "")%>></td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[major_mobile]" value=<%=results[results.index{|s| s.include?("major_mobile")}].sub("major_mobile=", "")%>></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[major_home]" value="<%=results["major_home"]%>"></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[major_mobile]" value="<%=results["major_mobile"]%>"></td>
     </tr>
     <tr>
       <td class="tg-baqh">Minor</td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[minor_home]" value=<%=results[results.index{|s| s.include?("minor_home")}].sub("minor_home=", "")%>></td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[minor_mobile]" value=<%=results[results.index{|s| s.include?("minor_mobile")}].sub("minor_mobile=", "")%>></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[minor_home]" value="<%=results["minor_home"]%>"></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[minor_mobile]" value="<%=results["minor_mobile"]%>"></td>
     </tr>
     <tr>
       <td class="tg-baqh">Affected</td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[affected_home]" value=<%=results[results.index{|s| s.include?("affected_home")}].sub("affected_home=", "")%>></td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[affected_mobile]" value=<%=results[results.index{|s| s.include?("affected_mobile")}].sub("affected_mobile=", "")%>></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[affected_home]" value="<%=results["affected_home"]%>"></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[affected_mobile]" value="<%=results["affected_mobile"]%>"></td>
     </tr>
     <tr>
       <td class="tg-baqh">Inaccessible</td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[inaccessible_home]" value=<%=results[results.index{|s| s.include?("inaccessible_home")}].sub("inaccessible_home=", "")%>></td>
-      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[inaccessible_mobile]" value=<%=results[results.index{|s| s.include?("inaccessible_mobile")}].sub("inaccessible_mobile=", "")%>></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[inaccessible_home]" value="<%=results["inaccessible_home"]%>"></td>
+      <td class="tg-baqh"><input type="number" size="2" maxlength="2" min="0" max="28" name="user[inaccessible_mobile]" value="<%=results["inaccessible_mobile"]%>"></td>
     </tr>
   </table><br>
-  <input type="hidden" name="user[id]" value=<%=results[results.index{|s| s.include?("id")}].sub("id=", "")%>>
+  <input type="hidden" name="user[id]" value="<%=results["id"]%>">
   <input type="submit">
 </form>
     </section>
@@ -322,5 +326,7 @@
 <script src="js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="js/app.min.js"></script>
+
+<script src="js/calc.js"></script>
 </body>
 </html>

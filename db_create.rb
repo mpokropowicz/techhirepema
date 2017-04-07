@@ -12,18 +12,18 @@ begin
   #       user:ENV['dbuser'],
   #       password:ENV['dbpassword']
   #     }
-  db_params = {  # AWS db
-        host: ENV['host'],
-        port:ENV['port'],
-        dbname:ENV['dbname'],
-        user:ENV['dbuser'],
-        password:ENV['dbpassword']
-      }
-  # db_params = {  # local db
+  # db_params = {  # AWS db
+  #       host: ENV['host'],
+  #       port:ENV['port'],
   #       dbname:ENV['dbname'],
   #       user:ENV['dbuser'],
   #       password:ENV['dbpassword']
   #     }
+  db_params = {  # local db
+        dbname:ENV['dbname'],
+        user:ENV['dbuser'],
+        password:ENV['dbpassword']
+      }
   conn = PG::Connection.new(db_params)
 
   # drop common table if it exists

@@ -5,19 +5,19 @@ load "./local_env.rb" if File.exists?("./local_env.rb")
 
 def open_db()
   begin
-    # connect to the database
-   # db_params = {  # local test
-   #      dbname:ENV['dbname'],
-   #      user:ENV['dbuser'],
-   #      password:ENV['dbpassword']
-   #    }
-   db_params = {  # AWS db
-        host: ENV['host'],
-        port:ENV['port'],
+    #connect to the database
+   db_params = {  # local test
         dbname:ENV['dbname'],
         user:ENV['dbuser'],
         password:ENV['dbpassword']
       }
+   # db_params = {  # AWS db
+   #      host: ENV['host'],
+   #      port:ENV['port'],
+   #      dbname:ENV['dbname'],
+   #      user:ENV['dbuser'],
+   #      password:ENV['dbpassword']
+   #    }
     conn = PG::Connection.new(db_params)
   rescue PG::Error => e
     puts 'Exception occurred'
@@ -79,7 +79,7 @@ def match_column(value)
       rs = conn.exec_prepared('q_statement')
       conn.exec("deallocate q_statement")
       results = rs.values.flatten
-      (results.include? value) ? (return column) : (target = "")
+      results.each { |e| return column if e =~ /#{value}/i }
     end
     return target
   rescue PG::Error => e
@@ -123,9 +123,9 @@ def pull_records(value)
       query = "select *
               from common
               join ind on common.id = ind.common_id
-              where " + column + " = $1"  # bind parameter
+              where " + column + " ilike $1"  # bind parameter
       conn.prepare('q_statement', query)
-      rs = conn.exec_prepared('q_statement', [value])
+      rs = conn.exec_prepared('q_statement', ["%" + value + "%"])
       conn.exec("deallocate q_statement")
       rs.each { |result| results.push(result) }
       return results
